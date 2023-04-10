@@ -1,0 +1,21 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address[]",
+                "name": "accounts_",
+                "type": "address[]"
+            }
+        ],
+        "name": "viewAddressInfo",
+        "outputs": [
+            {
+                "internalType": "uint256[]",
+                "name": "info",
+                "type": "uint256[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
