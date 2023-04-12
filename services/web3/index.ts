@@ -1,7 +1,17 @@
 import { rpcURLs } from "../../const/rpc-urls";
 import { addresses } from "../../const/addresses";
-import { Contract, JsonRpcProvider } from "ethers";
+import {
+  BytesLike,
+  Contract,
+  JsonRpcProvider,
+  SignatureLike,
+  recoverAddress,
+} from "ethers";
 import { AddressFilter, AddressFilter__factory } from "../../typechain-types";
+
+export const recoverSigner = (digest: BytesLike, signature: SignatureLike) => {
+  return recoverAddress(digest, signature);
+};
 
 const getRpcUrl = (chainId: number): string =>
   rpcURLs[chainId][Math.floor(Math.random() * rpcURLs[chainId].length)];

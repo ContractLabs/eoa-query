@@ -3,12 +3,19 @@
   "packageManager": "yarn@3.5.0",
   "devDependencies": {
     "@google-cloud/bigquery": "^6.2.0",
+    "@google-cloud/local-auth": "^2.1.1",
     "@typechain/ethers-v6": "^0.3.0",
+    "@types/file-saver": "^2.0.5",
     "@types/node": "^18.15.11",
+    "add": "^2.0.6",
     "ethers": "^6.3.0",
+    "file-saver": "^2.0.5",
     "fs": "^0.0.1-security",
+    "googleapis": "^116.0.0",
     "jszip": "^3.10.1",
     "node-cron": "^3.0.2",
-    "typechain": "^8.1.1"
+    "typechain": "^8.1.1",
+    "yarn": "^1.22.19",
+    "zip-a-folder": "^1.1.5"
   }
 }

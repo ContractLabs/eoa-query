@@ -1,11 +1,15 @@
 import * as fs from "fs";
-import JSZip from "jszip";
+import { zip } from "zip-a-folder";
 import { config } from "../../const/cfg";
 import { fetchAccountInfoRetry } from "../web3";
 import { BigQuery } from "@google-cloud/bigquery";
 import { query, queryLite } from "../../const/query";
+import { GoogleDriveService } from "./gd";
 
-export const fetchData = async (filename: string, query: string) => {
+export const fetchData = async (
+  filename: string,
+  query: string
+): Promise<string> => {
   const start = new Date().getTime();
   const bigquery = new BigQuery({
     projectId: "get-eth-positive-accounts",
@@ -25,34 +29,49 @@ export const fetchData = async (filename: string, query: string) => {
   let results: any[] = [];
   let batchSize = config.calldataSize;
   for (let i = 0; i < length; ) {
+    console.log("Processing batch: ", i);
     chunk = rows.slice(i, (i + batchSize) % length).map((v) => v.address);
     results.push(await fetchAccountInfoRetry(0, chunk, 97));
 
-    i += batchSize;
+    i = i + batchSize;
   }
 
   length = results.length;
   batchSize = config.writeDataSize;
   for (let i = 0; i < length; ) {
+    console.log("Processing batch: ", i);
     chunk = results.slice(i, (i + batchSize) % length);
     fs.writeFileSync(
       `${pathName}/${filename}-${i}.csv`,
       "account,balance\n" + chunk.join("\n")
     );
-    i += batchSize;
+    i = i + batchSize;
   }
 
-  const zip = new JSZip();
-  const files = fs.readdirSync(pathName);
-  const folder = zip.folder(pathName);
-  for (const file of files) {
-    const content = fs.readFileSync(`${pathName}/${file}`);
-    folder?.file(file, content);
-  }
+  await zip(pathName, `tmp/${filename}.zip`);
 
-  await zip.generateAsync({ type: "blob" });
+  const link = await upload("tmp", `${filename}.zip`);
 
   console.log(`Execution time: ${new Date().getTime() - start}`);
+
+  return link;
+};
+
+const upload = async (path: string, name: string): Promise<string> => {
+  const pathName = `${path}/${name}`;
+
+  const googleDriveService = new GoogleDriveService();
+
+  let response = await googleDriveService.saveFile(name, pathName);
+
+  const id = response.data.id;
+
+  response = await googleDriveService.getPublicLink(id);
+
+  const link = response.data.webViewLink;
+  console.info("File uploaded successfully!\nLink: ", link);
+
+  return link;
 };
 
 fetchData(new Date().getTime().toString(), queryLite).then(() => {});
