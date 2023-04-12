@@ -11,3 +11,5 @@
 #.pnp.*
 key
 node_modules
+data
+tmp
