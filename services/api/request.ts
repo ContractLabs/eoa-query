@@ -1,21 +1,28 @@
 import { SignatureLike, verifyMessage } from "ethers";
 import * as fs from "fs";
 
-const viewLinks = (account: string): string[] => {
+export const viewLinks = (account: string): any[] => {
   const requests: { [key: string]: string[] } = JSON.parse(
     fs.readFileSync("db/requests.json", "utf-8")
   );
   const results: string[] = JSON.parse(
     fs.readFileSync("db/results.json", "utf-8")
   );
-
+  
+  console.log("ACCOUNT______",account);
   const requestsByAccount = requests[account];
-  return requestsByAccount
-    .filter((v) => results.includes(v))
-    .map((v) => results[v]);
+  console.log("REQUEST_BY_ACCOUNT______",requestsByAccount);
+  const links = requestsByAccount
+    .filter((v) => v in results)
+    .map((v) => ({
+      name: v,
+      link: results[v]
+    }));
+  console.log("LINK______",links);
+  return links;
 };
 
-const requestQuery = (message: string, signature: SignatureLike) => {
+export const requestQuery = (message: string, signature: SignatureLike) => {
   const regex: RegExp = /Date:\s*(\d+)\nNonce:\s*(\d+)/;
 
   const match: RegExpExecArray | null = regex.exec(message);

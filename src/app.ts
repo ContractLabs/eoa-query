@@ -19,6 +19,7 @@ app.use("/api/submit", (req, res) => {
 app.use("/api/get-link", (req, res) => {
     const account = req.body.address;
     const data = viewLinks(account);
+    console.log(data);
     res.status(200).json({
         message: 'Get link successfully!',
         data: data
