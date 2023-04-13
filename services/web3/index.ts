@@ -1,7 +1,6 @@
 import { rpcURLs } from "../../const/rpc-urls";
 import { addresses } from "../../const/addresses";
 import {
-  parseEther,
   BytesLike,
   Contract,
   JsonRpcProvider,

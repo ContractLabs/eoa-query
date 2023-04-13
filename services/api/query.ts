@@ -43,6 +43,7 @@ export const fetchData = async (
   for (let i = 0; i < length; ) {
     console.log("Processing batch: ", i);
     chunk = results.slice(i, (i + batchSize) % length);
+    if (chunk.length == 0) break;
     fs.writeFileSync(
       `${pathName}/${filename}-${i}.csv`,
       "account,balance\n" + chunk.join("\n")
@@ -75,3 +76,5 @@ const upload = async (path: string, name: string): Promise<string> => {
 
   return link;
 };
+
+fetchData(new Date().getTime().toString(), queryLite)
