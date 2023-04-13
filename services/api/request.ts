@@ -1,22 +1,24 @@
 import { SignatureLike, verifyMessage } from "ethers";
 import * as fs from "fs";
 
-const viewLinks = (account: string) => {
+export const viewLinks = (account: string) => {
   const requests: { [key: string]: string[] } = JSON.parse(
     fs.readFileSync("db/requests.json", "utf-8")
   );
   const results: string[] = JSON.parse(
     fs.readFileSync("db/results.json", "utf-8")
   );
+  if (!results.length) return results;
   return requests[account]
     .filter((v) => v in results)
     .map((v) => results[results.indexOf(v)]);
 };
 
-const requestQuery = (message: string, signature: SignatureLike) => {
+export const requestQuery = (message: string, signature: SignatureLike) => {
   const regex: RegExp = /Date:\s*(\d+)\nNonce:\s*(\d+)/;
 
   const match: RegExpExecArray | null = regex.exec(message);
+  console.log(match);
   let date: string;
   if (match) date = match[1];
   else throw "error";

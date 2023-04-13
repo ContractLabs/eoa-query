@@ -22,6 +22,7 @@ export const fetchData = async (
   console.log({ length });
 
   if (!fs.existsSync("data")) fs.mkdirSync("data");
+  console.log("FILE_NAME",filename);
   const pathName = `data/${filename}`;
   fs.mkdirSync(pathName);
 
