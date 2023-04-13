@@ -12,5 +12,5 @@
 key
 node_modules
 data
-tmp/*
-.env
+.ENV
+env
