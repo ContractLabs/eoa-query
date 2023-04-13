@@ -7,6 +7,7 @@ import {
   JsonRpcProvider,
   SignatureLike,
   recoverAddress,
+  formatEther,
 } from "ethers";
 import { AddressFilter, AddressFilter__factory } from "../../typechain-types";
 
@@ -33,17 +34,9 @@ export const viewAddressInfo = async (
   const returnData = await addressFilter.viewAddressInfo.staticCall(addresses);
   const one = BigInt(1);
   return addresses
-    .filter(
-      (_, i) =>
-        (returnData[i] & one) == one &&
-        returnData[i] >> one > BigInt(balanceFilterThreshold)
-    )
-    .map((address, i) =>
-      [
-        `'${address}'`,
-        `${parseEther((returnData[i] >> one).toString())}ETH`,
-      ].join(",")
-    );
+    .map((address, i) => ({ account: address, balance: returnData[i] >> one }))
+    .filter((v) => v.balance > balanceFilterThreshold)
+    .map((v) => `${v.account},${formatEther(v.balance)} ETH`);
 };
 
 export const fetchAccountInfoRetry = async (

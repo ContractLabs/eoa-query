@@ -22,7 +22,7 @@ export const fetchData = async (
   console.log({ length });
 
   if (!fs.existsSync("data")) fs.mkdirSync("data");
-  console.log("FILE_NAME",filename);
+  console.log("FILE_NAME", filename);
   const pathName = `data/${filename}`;
   fs.mkdirSync(pathName);
 
@@ -37,7 +37,7 @@ export const fetchData = async (
     i = i + batchSize;
   }
 
-  results = results.flat()
+  results = results.flat();
   length = results.length;
   batchSize = config.writeDataSize;
   for (let i = 0; i < length; ) {
@@ -75,5 +75,3 @@ const upload = async (path: string, name: string): Promise<string> => {
 
   return link;
 };
-
-fetchData(new Date().getTime().toString(), queryLite).then(() => {});
