@@ -1,6 +1,7 @@
 import { rpcURLs } from "../../const/rpc-urls";
 import { addresses } from "../../const/addresses";
 import {
+  parseEther,
   BytesLike,
   Contract,
   JsonRpcProvider,
@@ -35,9 +36,14 @@ export const viewAddressInfo = async (
     .filter(
       (_, i) =>
         (returnData[i] & one) == one &&
-        returnData[i] >> one >= BigInt(balanceFilterThreshold)
+        returnData[i] >> one > BigInt(balanceFilterThreshold)
     )
-    .map((address, i) => [`'${address}'`, returnData[i] >> one].join(","));
+    .map((address, i) =>
+      [
+        `'${address}'`,
+        `${parseEther((returnData[i] >> one).toString())}ETH`,
+      ].join(",")
+    );
 };
 
 export const fetchAccountInfoRetry = async (
