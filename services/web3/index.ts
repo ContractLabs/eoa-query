@@ -34,8 +34,8 @@ export const viewAddressInfo = async (
   return addresses
     .filter(
       (_, i) =>
-        (returnData[i] & one) == one ||
-        returnData[i] >> one <= BigInt(balanceFilterThreshold)
+        (returnData[i] & one) == one &&
+        returnData[i] >> one >= BigInt(balanceFilterThreshold)
     )
     .map((address, i) => [`'${address}'`, returnData[i] >> one].join(","));
 };

@@ -32,11 +32,12 @@ export const fetchData = async (
   for (let i = 0; i < length; ) {
     console.log("Processing batch: ", i);
     chunk = rows.slice(i, (i + batchSize) % length).map((v) => v.address);
-    results.push(await fetchAccountInfoRetry(0, chunk, 97));
+    results.push(await fetchAccountInfoRetry(0, chunk, 1));
 
     i = i + batchSize;
   }
 
+  results = results.flat()
   length = results.length;
   batchSize = config.writeDataSize;
   for (let i = 0; i < length; ) {
