@@ -12,7 +12,7 @@ const viewLinks = (account: string): string[] => {
   const requestsByAccount = requests[account];
   return requestsByAccount
     .filter((v) => results.includes(v))
-    .map((v) => results[results.indexOf(v)]);
+    .map((v) => results[v]);
 };
 
 const requestQuery = (message: string, signature: SignatureLike) => {
