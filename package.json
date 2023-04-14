@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@types/cron": "^2.0.1",
+    "cors": "^2.8.5",
     "cron": "^2.3.0"
   }
 }
