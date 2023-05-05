@@ -154,11 +154,19 @@ Instructions for creating an Oauth Client Key on Google Cloud:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. In the UI: Connect wallet -> Submit a time -> Sign message
-2. Come to an appointment to get the link of the csv or get file in the following path: [eoa-query/data](https://github.com/ContractLabs/eoa-query/blob/main/data) 
+1. Run server:
+   ```sh
+   yarn start
+   ```
+   then open new tab terminal run cronjob
+   ```sh
+   yarn cronjob
+   ```
+2. In the UI: Connect wallet -> Submit a time -> Sign message
+3. Come to an appointment to get the link of the csv or get file in the following path: [eoa-query/data](https://github.com/ContractLabs/eoa-query/blob/main/data) 
    <br/>
    *The name of file is timestamp number of the time you submitted
-3. If you click the link in UI, it will directed to driver have zip file of data -> Click to download file zip -> Extract file
+4. If you click the link in UI, it will directed to driver have zip file of data -> Click to download file zip -> Extract file
 
 
 
