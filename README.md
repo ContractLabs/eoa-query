@@ -72,8 +72,6 @@ Set an appointment date, come to an appointment to get the link of the csv file 
 * [![React][React.js]][React-url]
 * ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
