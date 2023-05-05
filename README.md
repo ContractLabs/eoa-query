@@ -137,10 +137,15 @@ Instructions for creating an Oauth Client Key on Google Cloud:
    BIGQUERY_PROJECT_ID is the id of the project created in step 5 in [here](https://github.com/ContractLabs/eoa-query/edit/main/README.md#set-up-authentication)
    <br/>
    BIGQUERY_KEY_PATH is the path to file key in [eoa-query/key](http://github.com/ContractLabs/eoa-query/blob/main/key)
-6. If you don't need UI (Recommended):
-   a. Install ts-node in global
-   b. Create file index.ts in eoa-query/services
-   ```sh
+<!-- USAGE EXAMPLES -->
+## Usage
+
+1. If you don't need UI, doing the following step: (**Recommended***)
+   <br/>
+   Step 1: Install ts-node in global
+   <br/>
+   Step 2: Create file index.ts in eoa-query/services
+    ```sh
     import { processQueryRequest } from "./api";
     import { bigquery, drive } from "./instance";
     import { QUERY, QUERY_LITE } from "../const";
@@ -155,46 +160,41 @@ Instructions for creating an Oauth Client Key on Google Cloud:
             Number(process.env.WRITEDATA_SIZE),
             drive,
             0
-    );
+        );
+    }
+    queryWithoutUI();
     ```
-    c. In Terminal run this script:
+    Step 3: In Terminal run this script:
     ```sh
     ts-node ./services/index.ts
     ```
-    d. In eoa-query/data/query-without-ui are the data csv files
-}
+    Step 4: In eoa-query/data/query-without-ui are the data csv files
 
-queryWithoutUI();
-   ```
-7. Clone the repo UI if you need UI 
+2. If you need UI, doing the following step: 
+   <br/>
+   Step 1: Clone this repo
    ```sh
    https://github.com/ContractLabs/eoa-query-ui.git
    ```
-   then
+   Step 2: then install UI packages
    ```sh
    yarn
    ```
+   Step 3: run react
    ```sh
    yarn start
    ```
-  
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-1. Run server:
+   Step 4: run server 
    ```sh
    yarn start
    ```
-   then open new tab terminal run cronjob
+   open new terminal tab:
    ```sh
    yarn cronjob
    ```
-2. In the UI: Connect wallet -> Submit a time -> Sign message
-3. Come to an appointment to get the link of the csv or get file in the following path: [eoa-query/data](https://github.com/ContractLabs/eoa-query/blob/main/data) 
+   Step 5: Connect wallet on UI, pick a date, submit & sign message
    <br/>
-   *The name of file is timestamp number of the time you submitted
-4. If you click the link in UI, it will directed to driver have zip file of data -> Click to download file zip -> Extract file
+   Step 6: Get link and download the data file in drive link
 
 
 
