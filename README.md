@@ -140,14 +140,13 @@ Instructions for creating an Oauth Client Key on Google Cloud:
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. If you don't need UI, doing the following step: (**Recommended***)
+1. If you don't need UI, doing the following step: (***Recommended***)
    <br/>
-   Step 1: Install ts-node in global
+   <ins>Step 1:</ins> Install ts-node in global
    ```sh
    npm install -g ts-node 
    ```
-   <br/>
-   Step 2: Create file index.ts in eoa-query/services
+   <ins>Step 2:</ins> Create file index.ts in eoa-query/services
     ```sh
     import { processQueryRequest } from "./api";
     import { bigquery, drive } from "./instance";
@@ -167,27 +166,27 @@ Instructions for creating an Oauth Client Key on Google Cloud:
     }
     queryWithoutUI();
     ```
-    Step 3: In Terminal run this script:
+    <ins>Step 3:</ins> In Terminal run this script:
     ```sh
     ts-node ./services/index.ts
     ```
-    Step 4: In eoa-query/data/query-without-ui are the data csv files
+    <ins>Step 4:</ins> In eoa-query/data/query-without-ui are the data csv files
 
 2. If you need UI, doing the following step: 
    <br/>
-   Step 1: Clone this repo
+   <ins>Step 1:</ins> Clone this repo
    ```sh
    https://github.com/ContractLabs/eoa-query-ui.git
    ```
-   Step 2: then install UI packages
+   <ins>Step 2:</ins> then install UI packages
    ```sh
    yarn
    ```
-   Step 3: run react
+   <ins>Step 3:</ins> run react
    ```sh
    yarn start
    ```
-   Step 4: run server 
+   <ins>Step 4:</ins> run server 
    ```sh
    yarn start
    ```
@@ -195,9 +194,9 @@ Instructions for creating an Oauth Client Key on Google Cloud:
    ```sh
    yarn cronjob
    ```
-   Step 5: Connect wallet on UI, pick a date, submit & sign message
+   <ins>Step 5:</ins> Connect wallet on UI, pick a date, submit & sign message
    <br/>
-   Step 6: Get link and download the data file in drive link
+   <ins>Step 6:</ins> Get link and download the data file in drive link
 
 
 
