@@ -143,6 +143,9 @@ Instructions for creating an Oauth Client Key on Google Cloud:
 1. If you don't need UI, doing the following step: (**Recommended***)
    <br/>
    Step 1: Install ts-node in global
+   ```sh
+   npm install -g ts-node 
+   ```
    <br/>
    Step 2: Create file index.ts in eoa-query/services
     ```sh
