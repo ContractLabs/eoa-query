@@ -137,8 +137,36 @@ Instructions for creating an Oauth Client Key on Google Cloud:
    BIGQUERY_PROJECT_ID is the id of the project created in step 5 in [here](https://github.com/ContractLabs/eoa-query/edit/main/README.md#set-up-authentication)
    <br/>
    BIGQUERY_KEY_PATH is the path to file key in [eoa-query/key](http://github.com/ContractLabs/eoa-query/blob/main/key)
-6. Install Postman if you don't need UI 
-7. Clone the repo UI if you need UI (Recommended)
+6. If you don't need UI (Recommended):
+   a. Install ts-node in global
+   b. Create file index.ts in eoa-query/services
+   ```sh
+    import { processQueryRequest } from "./api";
+    import { bigquery, drive } from "./instance";
+    import { QUERY, QUERY_LITE } from "../const";
+
+    async function queryWithoutUI() {
+        const results = await processQueryRequest(
+            QUERY,
+            1,
+            "query-without-ui", // file name 
+            bigquery,
+            Number(process.env.CALLDATA_SIZE),
+            Number(process.env.WRITEDATA_SIZE),
+            drive,
+            0
+    );
+    ```
+    c. In Terminal run this script:
+    ```sh
+    ts-node ./services/index.ts
+    ```
+    d. In eoa-query/data/query-without-ui are the data csv files
+}
+
+queryWithoutUI();
+   ```
+7. Clone the repo UI if you need UI 
    ```sh
    https://github.com/ContractLabs/eoa-query-ui.git
    ```
